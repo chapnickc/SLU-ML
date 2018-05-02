@@ -144,10 +144,6 @@ def split_data(cats_frames, dogs_frames, n_cats, n_dogs, test_size=0.3):
 
 
 
-
-
-
-
 def one_hot_encode(labels):
     n_labels = len(labels)
     n_unique_labels = len(np.unique(labels))

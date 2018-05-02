@@ -3,3 +3,5 @@ cats_dogs/
 audio-cats-and-dogs.zip
 __pycache__
 .swp
+token_map.json
+*.aze.txt

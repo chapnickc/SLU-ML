@@ -145,7 +145,7 @@ def trigram_estimate(token, previous_words):
 
 
 
-# with open('token_map.json', 'w') as f: json.dump(token_map, f)
+with open('token_map.json', 'w') as f: json.dump(token_map, f)
 
 test_df = pd.read_csv('../input.csv')
 df = test_df.copy()

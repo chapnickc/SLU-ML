@@ -142,8 +142,6 @@ def split_data(cats_frames, dogs_frames, n_cats, n_dogs, test_size=0.3):
     return df_train, df_test
 
 
-#-----------------------------------------------------------------------------
-
 def extract_feature(file_name):
     X, sample_rate = librosa.load(file_name)
     stft = np.abs(librosa.stft(X))

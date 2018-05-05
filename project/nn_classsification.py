@@ -47,10 +47,8 @@ npz = np.load('checkpoint/features_and_labels.npz')
 features = npz['arr_0']
 labels = npz['arr_1']
 
-labels = pd.factorize(labels)
-
-# labels[0] is lables labels[1] is uniques
-labels = one_hot_encode(labels[0])
+labels, uniques = pd.factorize(labels)
+labels = one_hot_encode(labels)
 
 train_test_split = np.random.rand(len(features)) < 0.70
 train_x = features[train_test_split]
@@ -125,5 +123,8 @@ plt.show()
 p,r,f,s = precision_recall_fscore_support(y_true, y_pred, average='micro')
 print("F-Score:", round(f,3))
 
-print(classification_report(y_true, y_pred))
+print(confusion_matrix(y_pred, y_true))
+print(accuracy_score(y_pred, y_true))
+print(classification_report(y_pred, y_true))
+
 

@@ -2,10 +2,19 @@ from utils import parse_audio_files
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support
 
+import numpy as np
+
 features, labels = parse_audio_files(parent_dir='Cat-Dog', sub_dirs=['cats_dogs'])
+
+npz = np.load('checkpoint/features_and_labels.npz')
+features = npz['arr_0']
+labels = npz['arr_1']
+
+
 
 X_train, X_test, y_train, y_test = train_test_split(features, labels,
                                         test_size=0.3,

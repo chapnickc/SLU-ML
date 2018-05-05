@@ -131,3 +131,14 @@ print('Train Classification report:')
 print(classification_report(y_train_last, y_pred_train_last))
 print('Train Accuracy: ' + str(train_accuracy))
 
+
+#------------------------------------------------------
+import librosa
+import librosa.display
+
+S = cats_mel_frequencies[3]
+plt.figure(figsize=(9, 4))
+librosa.display.specshow(librosa.power_to_db(S,ref=np.max),y_axis='mel', fmax=None,x_axis='time')
+# plt.colorbar(format='%+2.0f dB')
+plt.tight_layout()
+plt.show()

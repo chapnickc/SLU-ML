@@ -8,6 +8,8 @@ import pandas as pd
 
 import tensorflow as tf
 from sklearn.metrics import precision_recall_fscore_support
+from sklearn.metrics import classification_report, accuracy_score
+%pylab
 
 import matplotlib.pyplot as plt
 
@@ -57,7 +59,7 @@ test_x = features[~train_test_split]
 test_y = labels[~train_test_split]
 
 
-training_epochs = 5000
+training_epochs = 10000
 n_dim = features.shape[1]
 n_classes = len(labels[1])
 n_hidden_units_one = 280
@@ -106,18 +108,22 @@ with tf.Session() as sess:
 
 
 
-test_accuracy = np.sum(np.array([y_true == y_pred]))/len(y_true)
+test_accuracy = accuracy_score(y_pred, y_true)
 print(f'Test Accuracy: {test_accuracy}')
 
 
 fig = plt.figure(figsize=(10,8))
-plt.plot(cost_history)
+ax = fig.add_subplot(1,1,1)
+ax.plot(cost_history)
+ax.set_xscale('log')
 plt.ylabel("Cost")
 plt.xlabel("Iterations")
 plt.axis([0,training_epochs,0,np.max(cost_history)])
+plt.tight_layout()
 plt.show()
 
 p,r,f,s = precision_recall_fscore_support(y_true, y_pred, average='micro')
 print("F-Score:", round(f,3))
 
 print(classification_report(y_true, y_pred))
+
